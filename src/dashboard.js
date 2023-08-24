@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import './index.css';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -15,24 +15,12 @@ import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './chart';
+import CountUp from 'react-countup';
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 const drawerWidth = 240;
 
@@ -79,12 +67,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         },
     }),
 );
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
     const [destinationList, setDestinationList] = useState('');
+    const [numberOfDestinations, setNumberOfDestinations] = useState('');
+
 
     useEffect(() => {
         fetch('/topFiveDestinations')
@@ -93,10 +81,16 @@ export default function Dashboard() {
             .catch(error => console.error(error));
     }, []);
 
+    useEffect(() => {
+        fetch('/numberOfDestinations')
+            .then(response => response.json())
+            .then(numberOfDestinations => setNumberOfDestinations(numberOfDestinations))
+            .catch(error => console.error(error));
+    }, []);
+
     const topFive = () => {
         if (destinationList.length === 0) {
-            console.log({ destinationList })
-            return <p>cannot find array</p>;
+            return <p>cannot find destination list</p>;
         } else {
             return (
                 <List>
@@ -109,6 +103,18 @@ export default function Dashboard() {
             );
         }
     };
+
+    const destinationCount = () => {
+        if (numberOfDestinations) {
+            return <CountUp className="counterText"
+                end={numberOfDestinations}
+                duration={5}
+            />
+
+        } else {
+            return <p>cannot find destination count</p>;
+        }
+    }
 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -185,37 +191,39 @@ export default function Dashboard() {
                     }}
                 >
                     <Toolbar />
-                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }} >
                         <Grid container spacing={3}>
-                            {/* Chart */}
-                            <Grid item xs={12} md={8} lg={9}>
+                            {/* booking times chart */}
+                            <Grid item xs={12} md={8} lg={9} className="TimeToBookChart">
                                 <Paper
                                     sx={{
                                         p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        height: 240,
+                                        height: 340,
                                     }}
                                 >
                                     <Chart />
                                 </Paper>
                             </Grid>
-                            {/* Recent Deposits */}
-                            <Grid item xs={12} md={4} lg={3}>
+                            {/* nuumber of destinations */}
+                            <Grid item xs={12} md={4} lg={3} className="numberOfDestinations">
                                 <Paper
                                     sx={{
                                         p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        height: 240,
+                                        height: 180,
                                     }}
                                 >
+                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>Unique Destinations</Typography>
+                                    {destinationCount()}
                                 </Paper>
                             </Grid>
-                            {/* Recent Orders */}
-                            <Grid item xs={12}>
+                            {/* Top 5 */}
+                            <Grid item xs={12} className="top5Container">
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                                <Typography component="h2" variant="h6" color="primary" gutterBottom>Top Five Destinations</Typography>
+                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>Top Five Destinations</Typography>
                                     {topFive()}
                                 </Paper>
                             </Grid>
@@ -225,5 +233,16 @@ export default function Dashboard() {
                 </Box>
             </Box>
         </ThemeProvider>
+    );
+}
+
+function Copyright(props) {
+    return (
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+            {'Copyright ©   Olivias Holiday search breakdown '}
+
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
     );
 }
