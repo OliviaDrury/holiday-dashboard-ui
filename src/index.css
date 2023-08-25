@@ -11,9 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .counterText {
-  text-align: center;
   color: rgb(255, 128, 66);
-  font-size: 60px; 
+}
+
+.totalText {
+  color: rgb(0, 196, 159);
+}
+
+.totalsBlock {
+  text-align: center;
+  font-size: 60px;
   vertical-align: middle;
 }

@@ -72,7 +72,7 @@ const defaultTheme = createTheme();
 export default function Dashboard() {
     const [destinationList, setDestinationList] = useState('');
     const [numberOfDestinations, setNumberOfDestinations] = useState('');
-
+    const [totalSpent, setTotalSpent] = useState('');
 
     useEffect(() => {
         fetch('/topFiveDestinations')
@@ -85,6 +85,13 @@ export default function Dashboard() {
         fetch('/numberOfDestinations')
             .then(response => response.json())
             .then(numberOfDestinations => setNumberOfDestinations(numberOfDestinations))
+            .catch(error => console.error(error));
+    }, []);
+
+    useEffect(() => {
+        fetch('/totalSpent')
+            .then(response => response.json())
+            .then(totalSpent => setTotalSpent(totalSpent))
             .catch(error => console.error(error));
     }, []);
 
@@ -106,7 +113,7 @@ export default function Dashboard() {
 
     const destinationCount = () => {
         if (numberOfDestinations) {
-            return <CountUp className="counterText"
+            return <CountUp
                 end={numberOfDestinations}
                 duration={5}
             />
@@ -115,6 +122,19 @@ export default function Dashboard() {
             return <p>cannot find destination count</p>;
         }
     }
+
+    const totalSpentCounter = () => {
+        if (totalSpent) {
+            return <CountUp
+                end={totalSpent}
+                duration={5}
+            />
+
+        } else {
+            return <p>cannot find total spent</p>;
+        }
+    }
+
 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -150,13 +170,8 @@ export default function Dashboard() {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Dashboard
+                            Holiday Dashboard
                         </Typography>
-                        <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
@@ -206,20 +221,27 @@ export default function Dashboard() {
                                     <Chart />
                                 </Paper>
                             </Grid>
-                            {/* nuumber of destinations */}
+                            {/* nuumber of destinations + total spent */}
                             <Grid item xs={12} md={4} lg={3} className="numberOfDestinations">
-                                <Paper
+                                <Paper className='totalsBlock'
                                     sx={{
                                         p: 2,
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        height: 180,
+                                        height: 340,
                                     }}
                                 >
-                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>Unique Destinations</Typography>
-                                    {destinationCount()}
+                                    <span className="counterText">
+                                        <Typography component="h2" variant="h6" color="primary" gutterBottom>Unique Destinations</Typography>
+                                        {destinationCount()}
+                                    </span>
+                                    <span className='totalText'>
+                                        <Typography component="h2" variant="h6" color="primary" gutterBottom>Total spent on trips</Typography>
+                                        £{totalSpentCounter()}
+                                    </span>
                                 </Paper>
                             </Grid>
+
                             {/* Top 5 */}
                             <Grid item xs={12} className="top5Container">
                                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
