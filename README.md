@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Holiday Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This Holiday Dashboard is a React application that provides insights into your holiday-related data. It includes visualizations and counters for the top five destinations, the number of unique destinations, and the total amount spent on trips.
 
-## Available Scripts
+## Features
+- **Top Five Destinations**: Displays the top five destinations based on data fetched from the API.
+- **Unique Destinations Counter**: Shows the total number of unique destinations visited.
+- **Total Spent Counter**: Indicates the total amount spent on trips.
+- **Booking Times Chart**: Presents a chart depicting booking times for holidays.
 
-In the project directory, you can run:
+## Getting Started
+To run this application locally, follow these steps:
 
-### `npm start`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/OliviaDrury/holiday-dashboard-ui.git
+   cd holiday-dashboard
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
+The main dashboard provides an overview of holiday-related statistics.
+Explore the various sections, such as the chart showing booking times and counters for unique destinations and total spending.
+Customize the application as needed for your specific use case.
 
-### `npm test`
+## Dependencies
+React
+Material-UI
+API Endpoints
+/topFiveDestinations: Fetches the top five destinations.
+/numberOfDestinations: Fetches the total number of unique destinations.
+/totalSpent: Fetches the total amount spent on trips.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Contributing
+If you would like to contribute to this project, please follow the standard GitHub flow:
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Fork the repository.
+Create a new branch (git checkout -b feature/new-feature).
+Make your changes and commit them (git commit -m 'Add new feature').
+Push your changes to the branch (git push origin feature/new-feature).
+Create a pull request.

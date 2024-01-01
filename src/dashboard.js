@@ -113,6 +113,7 @@ export default function Dashboard() {
 
     const destinationCount = () => {
         if (numberOfDestinations) {
+            console.log(numberOfDestinations, "number of destinations")
             return <CountUp
                 end={numberOfDestinations}
                 duration={5}
