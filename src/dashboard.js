@@ -11,13 +11,11 @@ import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './chart';
 import CountUp from 'react-countup';
 
@@ -70,9 +68,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
-    const [destinationList, setDestinationList] = useState('');
-    const [numberOfDestinations, setNumberOfDestinations] = useState('');
-    const [totalSpent, setTotalSpent] = useState('');
+    const [destinationList, setDestinationList] = useState([]);
+    const [numberOfDestinations, setNumberOfDestinations] = useState([]);
+    const [totalSpent, setTotalSpent] = useState([]);
 
     useEffect(() => {
         fetch('/topFiveDestinations')
