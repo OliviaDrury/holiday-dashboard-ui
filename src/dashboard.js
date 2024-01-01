@@ -76,21 +76,21 @@ export default function Dashboard() {
         fetch('/topFiveDestinations')
             .then(response => response.json())
             .then(destinationList => setDestinationList(destinationList))
-            .catch(error => console.error(error));
+            .catch(error => console.error("unable to retrieve top 5 destinations."));
     }, []);
 
     useEffect(() => {
         fetch('/numberOfDestinations')
             .then(response => response.json())
             .then(numberOfDestinations => setNumberOfDestinations(numberOfDestinations))
-            .catch(error => console.error(error));
+            .catch(error => console.error("unable to retrieve the number of destinations."));
     }, []);
 
     useEffect(() => {
         fetch('/totalSpent')
             .then(response => response.json())
             .then(totalSpent => setTotalSpent(totalSpent))
-            .catch(error => console.error(error));
+            .catch(error => console.error("unable to retrieve the total spent."));
     }, []);
 
     const topFive = () => {
